@@ -1,0 +1,10 @@
+var x = sample(GPT3({prompt: "My favorite type of ice cream is", max_tokens: 8, temperature: 0.5}))
+//var x = flip();
+console.log('Returned')
+console.log('---')
+console.log(x)
+console.log('---')
+var y = {"value": x}
+console.log(y)
+console.log('===')
+y

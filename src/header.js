@@ -59,6 +59,7 @@ module.exports = function(env) {
 
   env.defaultCoroutine = {
     sample: function(s, k, a, dist) {
+      console.log('Default coroutine')
       if (dist.handlesContinuation) {
         return dist.sample(s, k)
       }

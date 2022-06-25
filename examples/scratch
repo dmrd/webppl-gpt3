@@ -1,0 +1,13 @@
+
+/*
+var flip = function(p) {
+  var params = {p: (p !== undefined) ? p : .5};
+  return sample(Bernoulli(params));
+};
+
+
+  //return sample(Bernoulli({p:0.5}))
+  //var params = {p: 'My favorite flavor of ice cream is'};
+ // return sample((params));
+
+*/

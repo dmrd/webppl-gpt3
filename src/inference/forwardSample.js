@@ -41,19 +41,35 @@ module.exports = function(env) {
       }.bind(this), this.a);
     },
 
+    /* Arguments
+     s: store - random world store. Which addresses map to which vars.
+     k: continuation - 
+     a: address - 
+     dist: Distribution
+     options: Options to use for guide distribution
+
+     TODO:
+       - figure out difference between forwardSample and header.js DefaultCoroutine
+    */
     sample: function(s, k, a, dist, options) {
       var cont = function(s, dist) {
+        // k2: 
         var k2 = function(s, val) {
-          var val = dist.sample();
+          //var val = dist.sample();
           this.score += dist.score(val);
+          console.log('k2')
+          console.log('K is')
+          console.log(k.toString())
+          // console.log((k, s, val))
           return k(s, val);
-        }
+        }.bind(this);
         if (dist.handlesContinuation) {
-          return dist.sample(k2, s)
+          return dist.sample(s, k2)
+          //return dist.sample(s, k)
         } else {
           return k2(s, dist.sample())
         }
-      };
+      }.bind(this);
 
       if (this.sampleGuide) {
         options = options || {};
@@ -106,6 +122,8 @@ module.exports = function(env) {
         // Loop body.
         function(i, next) {
           return runForward(s, function(s, ret) {
+            //console.log('run forward loop')
+            //console.log((i, next, s, ret))
             logWeights.push(ret.logWeight);
             hist.add(ret.val, ret.score);
             callbacks.sample({value: ret.val, score: ret.score});
@@ -114,6 +132,7 @@ module.exports = function(env) {
         },
         // Continuation.
         function() {
+          console.log('continuation -=-=-=')
           callbacks.finish();
           var dist = hist.toDist();
           if (!opts.guide) {

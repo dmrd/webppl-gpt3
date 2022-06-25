@@ -1,0 +1,14 @@
+var generate = function(prompt) {
+  return sample(GPT3({prompt: prompt, max_tokens: 8, temperature: 0.5}))
+}
+
+var model = function() {
+  var a = generate("hello");
+  //var a = flip();
+  return a;
+};
+console.log('Hello')
+//var x = Infer({method: 'forward', model: model, samples: 1});
+var x = ForwardSample(model, {samples: 1})
+console.log('=== DONE ===')
+console.log(x)

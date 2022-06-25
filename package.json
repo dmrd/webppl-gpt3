@@ -30,7 +30,8 @@
     "priorityqueuejs": "~1.0.0",
     "seedrandom": "^2.4.2",
     "source-map": "^0.5.3",
-    "stack-trace": "0.0.9"
+    "stack-trace": "0.0.9",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "aws-sdk": "^2.400.0",
